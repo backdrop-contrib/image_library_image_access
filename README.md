@@ -9,13 +9,17 @@ point, though, if different roles should have different levels of access to
 existing images.
 
 This module provides an extra permission to access all the images in the
-image library - other roles (accounts) will only see *their own files*.
+image library - other roles (accounts) will only see *their own files* in
+the image browser.
 
 ## Installation
 
 Install this module using the
  [official Backdrop CMS instructions](https://docs.backdropcms.org/documentation/extend-with-modules).
 
+Go to admin/config/people/permissions and grant the "Access any file in image
+library" permission to the roles you need, for example "Editor".
+That's it.
 
 ## Issues
 
