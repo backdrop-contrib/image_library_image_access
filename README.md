@@ -22,7 +22,7 @@ Install this module using the
 
 Go to admin/config/people/permissions and grant the "Access any file in image
 library" permission to the roles you need, for example "Editor". The admin
-role, more specific accounts with permission to "bypass file access", will
+role, more precisely, accounts with permission to "bypass file access", will
 see all images in the library, anyway.
 
 ## Issues
