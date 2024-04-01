@@ -1,0 +1,5 @@
+name = Image library image access
+description = Adds a permission and check to access own or any images in core's image library.
+type = module
+backdrop = 1.x
+dependencies[] = filter

@@ -1,0 +1,51 @@
+<?php
+/**
+ * @file
+ * Image library image access module hooks and callbacks.
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function image_library_image_access_permission() {
+  $permissions = array(
+    'access any file in image library' => array(
+      'title' => t('Access any file in image library'),
+      'description' => t('People without this permission will only see their own files (files they uploaded).'),
+    ),
+  );
+  return $permissions;
+}
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function image_library_image_access_views_query_alter(&$view, &$query) {
+  if ($view->name == 'image_library') {
+    global $user;
+    if (!_image_library_image_access_permit_all($user)) {
+      $query->where[1]['conditions'][] = array(
+        'field' => 'file_managed.uid',
+        'value' => $user->uid,
+        'operator' => '=',
+      );
+    }
+  }
+}
+
+/**
+ * Custom callback.
+ *
+ * @return bool
+ */
+function _image_library_image_access_permit_all($account) {
+  // Admin access to files, limiting here makes no sense, anyway.
+  if (user_access('bypass file access', $account)) {
+    return TRUE;
+  }
+  // Less privileged, needs our custom permission.
+  if (user_access('access any file in image library', $account)) {
+    return TRUE;
+  }
+  return FALSE;
+}
