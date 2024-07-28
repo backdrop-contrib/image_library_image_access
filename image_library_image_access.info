@@ -3,3 +3,4 @@ description = Adds a permission and check to access own or any images in core's 
 type = module
 backdrop = 1.x
 dependencies[] = filter
+maintainers[indigoxela] = indigoxela
